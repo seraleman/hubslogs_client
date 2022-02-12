@@ -1,7 +1,7 @@
 import { createPinia } from 'pinia'
 import router from './router'
 import { createApp } from 'vue'
-import { Quasar, Loading } from 'quasar'
+import { Quasar, Loading, Notify } from 'quasar'
 import quasarIconSet from 'quasar/icon-set/svg-line-awesome'
 
 // Import icon libraries
@@ -21,7 +21,7 @@ const myApp = createApp(App)
 myApp.use(createPinia()).use(router)
 
 myApp.use(Quasar, {
-  plugins: { Loading }, // import Quasar plugins and add here
+  plugins: { Loading, Notify }, // import Quasar plugins and add here
   iconSet: quasarIconSet,
   /*
   config: {

@@ -17,7 +17,6 @@ const useForm = () => {
 
   const method = {
     createReason: async (reasonForm: Reason, reasons: Reason[]) => {
-      console.log('escuchando el createReason')
       let idMax = 0
       reasons.forEach((reason) => {
         if (Number(reason.id) > idMax) idMax = Number(reason.id)

@@ -41,7 +41,6 @@ export const useReasonStore = defineStore('reason', {
     },
 
     setReasonById(id: string) {
-      console.log('Llamando a setReasonById')
       const reason = this.reasonById(id)
       if (reason !== undefined) this.reason = reason
     },
