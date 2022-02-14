@@ -1,39 +1,39 @@
 <script lang="ts">
-import { defineComponent } from 'vue'
-export default defineComponent({
-  name: 'ReasonList',
-})
+  import { defineComponent } from 'vue'
+  export default defineComponent({
+    name: 'ReasonList',
+  })
 </script>
 
 <script lang="ts" setup>
-import { useReasonStore } from '../store/useReasonStore'
-import { Reason as reasonInterface } from '../interfaces'
+  import { useReasonStore } from '../store/useReasonStore'
+  import { Reason as reasonInterface } from '../interfaces'
 
-import ReasonItem from './ReasonItem.vue'
-import Reason from './Reason.vue'
+  import ReasonItem from './ReasonItem.vue'
+  import Reason from './Reason.vue'
 
-const props = defineProps({
-  reason: {
-    default() {
-      return {
-        reason: {
-          description: '',
-          id: '',
-          name: '',
-        },
-      }
+  const props = defineProps({
+    reason: {
+      default() {
+        return {
+          reason: {
+            description: '',
+            id: '',
+            name: '',
+          },
+        }
+      },
+      required: true,
+      type: Object as () => reasonInterface,
     },
-    required: true,
-    type: Object,
-  },
-  reasons: {
-    required: true,
-    type: Object as () => reasonInterface[],
-    default() {},
-  },
-})
+    reasons: {
+      required: true,
+      type: Object as () => reasonInterface[],
+      default() {},
+    },
+  })
 
-const reasonStore = useReasonStore()
+  const reasonStore = useReasonStore()
 </script>
 
 <template>
@@ -57,26 +57,25 @@ const reasonStore = useReasonStore()
   </template>
 </template>
 
-<style lang="sass" scoped>
+<style lang="scss" scoped>
+  // .my-sticky-header-table
+  //   /* height or max-height is important */
+  //   max-height: 605px
 
-.my-sticky-header-table
-  /* height or max-height is important */
-  max-height: 605px
+  //   .q-table__top,
+  //   .q-table__bottom,
+  //   thead tr:first-child th
+  //     /* bg color is important for th; just specify one */
+  //     background-color: #f9f9f9
 
-  .q-table__top,
-  .q-table__bottom,
-  thead tr:first-child th
-    /* bg color is important for th; just specify one */
-    background-color: #f9f9f9
+  //   thead tr th
+  //     position: sticky
+  //     z-index: 1
+  //   thead tr:first-child th
+  //     top: 0
 
-  thead tr th
-    position: sticky
-    z-index: 1
-  thead tr:first-child th
-    top: 0
-
-  /* this is when the loading indicator appears */
-  &.q-table--loading thead tr:last-child th
-    /* height of all previous header rows */
-    top: 48px
+  //   /* this is when the loading indicator appears */
+  //   &.q-table--loading thead tr:last-child th
+  //     /* height of all previous header rows */
+  //     top: 48px
 </style>

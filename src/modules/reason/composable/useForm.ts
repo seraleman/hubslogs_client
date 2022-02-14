@@ -2,10 +2,12 @@ import { computed, ref } from 'vue'
 import { useReasonStore } from '../store/useReasonStore'
 import { useQuasar } from 'quasar'
 import { Reason } from '../interfaces'
+import useGeneral from '../composable/useGeneral'
 
 const useForm = () => {
   const reasonStore = useReasonStore()
   const $q = useQuasar()
+  const { showLoading, hideLoading, notify } = useGeneral()
 
   const isReasonFormOpen = ref(false)
   const reasonForm = ref<Reason>({ description: '', id: '', name: '' })
@@ -28,12 +30,12 @@ const useForm = () => {
         name: reasonForm.name,
       }
 
-      method.showLoading()
+      showLoading()
       await reasonStore.createReason(reason)
-      method.hideLoading()
+      hideLoading()
       method.toggleIsReasonFormOpen()
 
-      $q.notify({
+      notify({
         color: 'secondary',
         icon: 'cloud_done',
         message: `La razón '${reasonForm.name}' ha sido creada`,
@@ -41,10 +43,6 @@ const useForm = () => {
       })
 
       method.resetReasonForm()
-    },
-
-    hideLoading: () => {
-      $q.loading.hide()
     },
 
     isFieldNotNull: (val: string, message: string) => {
@@ -55,23 +53,62 @@ const useForm = () => {
       reasonForm.value = { description: '', id: '', name: '' }
     },
 
+    setReasonForm: (reason: Reason) => {
+      const { description, id, name } = reason
+
+      reasonForm.value = {
+        description,
+        id,
+        name,
+      }
+    },
+
     toggleIsReasonFormOpen: () => {
       isReasonFormOpen.value = !isReasonFormOpen.value
     },
 
-    showLoading: () => {
-      $q.loading.show({
-        message: 'Por favor espera...',
-        boxClass: 'bg-grey-2 text-grey-9',
-        spinnerColor: 'secondary',
-      })
+    updateReason: async (reasonForm: Reason, reasons: Reason[]) => {
+      const { description, id, name } = reasonForm
+      const idx = reasons.map((e) => e.id).indexOf(id)
+      const reasonCurrent = reasons[idx]
+
+      const reason: Reason = {
+        description,
+        id,
+        name,
+      }
+
+      const equal = JSON.stringify(reason) === JSON.stringify(reasonCurrent)
+
+      if (equal) {
+        notify({
+          color: 'warning',
+          icon: 'las la-exclamation-circle',
+          message: `No hubo cambios en la información de ${reasonCurrent.name}`,
+          textColor: 'white',
+        })
+        // mutation.toggleIsReasonFormOpen()
+      } else {
+        showLoading()
+        await reasonStore.updateReason(idx, reason)
+        hideLoading()
+        reasonStore.updateSetReason(reason)
+
+        notify({
+          color: 'secondary',
+          icon: 'cloud_done',
+          message: `La información de ${reason.name} ha sido actualizada`,
+          textColor: 'white',
+        })
+        method.toggleIsReasonFormOpen()
+      }
     },
 
     /* functions used in components */
 
     onCancel: (reason: Reason | undefined) => {
       method.toggleIsReasonFormOpen()
-      method.resetReasonForm()
+      if (reason !== null) method.resetReasonForm()
     },
 
     onReset: () => {
@@ -80,6 +117,7 @@ const useForm = () => {
 
     onSubmit: async (reasonForm: Reason, reasons: Reason[]) => {
       if (reasonForm.id === '') await method.createReason(reasonForm, reasons)
+      else method.updateReason(reasonForm, reasons)
     },
   }
 
