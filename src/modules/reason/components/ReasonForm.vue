@@ -1,37 +1,58 @@
 <script lang="ts">
-import { defineComponent } from 'vue'
-import { stringifyQuery } from 'vue-router'
-export default defineComponent({
-  name: 'ReasonForm',
-})
+  import { defineComponent } from 'vue'
+  export default defineComponent({
+    name: 'ReasonForm',
+  })
 </script>
 
 <script lang="ts" setup>
-import { watch } from 'vue'
-import useForm from '../composable/useForm'
-import { useReasonStore } from '../store/useReasonStore'
+  import { watch } from 'vue'
+  import useForm from '../composable/useForm'
+  import { useReasonStore } from '../store/useReasonStore'
+  import { Reason as reasonInterface } from '../interfaces'
 
-const emit = defineEmits(['closeReasonForm'])
-const props = defineProps({
-  title: { type: String, required: true },
-  openReasonForm: { type: Boolean, required: true },
-})
+  const emit = defineEmits(['closeReasonForm'])
+  const props = defineProps({
+    openReasonForm: { type: Boolean, required: true },
+    reason: {
+      type: Object as () => reasonInterface,
+      required: false,
+      default() {
+        return {
+          reason: {
+            description: '',
+            id: '',
+            name: '',
+          },
+        }
+      },
+    },
+    title: { type: String, required: true },
+  })
 
-const { get, method, twoWay } = useForm()
+  const { get, method, twoWay } = useForm()
 
-const { reasonForm } = get
-const { isFieldNotNull, onCancel, onReset, onSubmit, toggleIsReasonFormOpen } =
-  method
-const { isReasonFormOpen, name, description } = twoWay
+  const { reasonForm } = get
+  const {
+    isFieldNotNull,
+    onCancel,
+    onReset,
+    onSubmit,
+    setReasonForm,
+    toggleIsReasonFormOpen,
+  } = method
+  const { isReasonFormOpen, name, description } = twoWay
 
-const useReason = useReasonStore()
+  const useReason = useReasonStore()
 
-watch(
-  () => props.openReasonForm,
-  (openReasonForm) => {
-    if (openReasonForm) toggleIsReasonFormOpen()
-  }
-)
+  watch(
+    () => props.openReasonForm,
+    (openReasonForm) => {
+      if (openReasonForm) toggleIsReasonFormOpen()
+    }
+  )
+
+  setReasonForm(props.reason)
 </script>
 
 <template>
@@ -106,15 +127,8 @@ watch(
   </q-dialog>
 </template>
 
-<style lang="sass" scoped>
-.col
-  height: 50px
-
-.square-box
-  height: 50px
-  width: 50px
-
-.my-card
-  width: 100%
-  max-width: 500px
+<style lang="scss" scoped>
+  // .my-card
+  //   width: 100%
+  //   max-width: 500px
 </style>
