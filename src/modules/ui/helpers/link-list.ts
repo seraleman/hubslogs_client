@@ -18,4 +18,10 @@ export const linkList: LinkItem[] = [
     icon: 'las la-cogs',
     link: 'reasons-admon',
   },
+  {
+    title: 'Registros',
+    caption: 'Registrar visitas de usuarios',
+    icon: 'las la-clipboard',
+    link: 'logs-admon',
+  },
 ]
