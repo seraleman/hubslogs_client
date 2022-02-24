@@ -1,0 +1,22 @@
+//imports apollo and GraphQL
+import {
+  ApolloClient,
+  createHttpLink,
+  InMemoryCache,
+} from '@apollo/client/core'
+import { uri } from '../sensitive'
+
+// HTTP connection to the API
+const httpLink = createHttpLink({
+  // You should use an absolute URL here
+  uri,
+})
+
+// Cache implementation
+const cache = new InMemoryCache()
+
+// Create the apollo client
+export const apolloClient = new ApolloClient({
+  link: httpLink,
+  cache,
+})

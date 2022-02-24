@@ -1,5 +1,6 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
 import reasonRouter from '../modules/reason/router'
+import logRouter from '../modules/Log/router'
 
 const routes: RouteRecordRaw[] = [
   {
@@ -14,6 +15,10 @@ const routes: RouteRecordRaw[] = [
       {
         path: 'reasons',
         ...reasonRouter,
+      },
+      {
+        path: 'Logs',
+        ...logRouter,
       },
     ],
   },
