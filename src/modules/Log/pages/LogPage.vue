@@ -6,8 +6,20 @@
 </script>
 
 <script lang="ts" setup>
+  import { useQuery } from '@vue/apollo-composable'
+  import gql from 'graphql-tag'
   import { ref } from 'vue'
   import { Reason } from '../../reason/interfaces'
+
+  const { result } = useQuery(gql`
+    query ExampleQuery {
+      getAllReasons {
+        id
+        name
+        description
+      }
+    }
+  `)
 
   const reason: Reason = {
     description: '',
@@ -34,6 +46,8 @@
     label="Registrar visita"
     @click="onSubmit(document)"
   />
+
+  <pre>{{ result }}</pre>
 </template>
 
 <style lang="scss" scoped></style>
