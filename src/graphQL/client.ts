@@ -4,7 +4,7 @@ import {
   createHttpLink,
   InMemoryCache,
 } from '@apollo/client/core'
-import { uri } from '../sensitive'
+import { uri } from './sensitive'
 
 // HTTP connection to the API
 const httpLink = createHttpLink({

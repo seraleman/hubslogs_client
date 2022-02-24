@@ -1,7 +1,7 @@
 import { computed, ref } from 'vue'
 import { useReasonStore } from '../store/useReasonStore'
 import { useQuasar } from 'quasar'
-import { Reason } from '../interfaces'
+import { Reason } from '../types'
 import useGeneral from '../composable/useGeneral'
 
 const useForm = () => {

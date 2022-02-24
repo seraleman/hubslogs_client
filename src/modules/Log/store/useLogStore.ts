@@ -1,5 +1,4 @@
 import { defineStore } from 'pinia'
-import { Reason } from '../../reason/interfaces/index'
 
 export const useLogStore = defineStore('log', {
   state: (): LogStore => ({
@@ -7,7 +6,7 @@ export const useLogStore = defineStore('log', {
   }),
 
   actions: {
-    async getUser(document: string) {
+    async getUserByDocument(document: string) {
       try {
       } catch (err) {
         console.log(err)
