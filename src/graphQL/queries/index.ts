@@ -18,3 +18,27 @@ export const getAllUsers = gql`
     }
   }
 `
+
+export const getAllLogs = gql`
+  query getAllLogs {
+    getAllLogs {
+      id
+      reason {
+        id
+        name
+        description
+      }
+      user {
+        id
+        full_name
+        document
+        document_type
+        email
+        entity
+        phoneNumber
+        position
+      }
+      dateTime
+    }
+  }
+`

@@ -1,3 +1,0 @@
-interface LogStore {
-  document: string
-}

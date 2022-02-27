@@ -16,7 +16,7 @@ export const useUserStore = defineStore('user', {
       entity: '',
       full_name: '',
       password: '',
-      phoneNumber: '',
+      phone_number: '',
       position: '',
       role: '',
     },
@@ -53,6 +53,23 @@ export const useUserStore = defineStore('user', {
 
     setUser(user: User) {
       this.user = user
+    },
+
+    resetUser() {
+      this.user = {
+        id: '',
+        date_of_birth: '',
+        document: '',
+        document_type: '',
+        email: '',
+        enabled: '',
+        entity: '',
+        full_name: '',
+        password: '',
+        phone_number: '',
+        position: '',
+        role: '',
+      }
     },
   },
 })
