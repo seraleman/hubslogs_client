@@ -1,8 +1,8 @@
 <script lang="ts">
-import { defineComponent } from 'vue'
-export default defineComponent({
-  name: 'ReasonLayout',
-})
+  import { defineComponent } from 'vue'
+  export default defineComponent({
+    name: 'ReasonLayout',
+  })
 </script>
 
 <script lang="ts" setup></script>
@@ -11,6 +11,7 @@ export default defineComponent({
   <q-layout>
     <div class="row justify-left">
       <q-chip
+        clickable
         class="q-ma-md"
         color="teal-1"
         icon="las la-cogs"

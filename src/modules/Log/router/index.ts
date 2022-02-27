@@ -9,5 +9,11 @@ export default {
       component: () =>
         import(/* webpackChunkName: "LogPage" */ '../pages/LogPage.vue'),
     },
+    {
+      path: 'create',
+      name: 'logs-create',
+      component: () =>
+        import(/* webpackChunkName: "LogPage" */ '../pages/RecordLogPage.vue'),
+    },
   ],
 }

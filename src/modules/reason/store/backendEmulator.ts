@@ -1,4 +1,4 @@
-import { Reason } from '../interfaces'
+import { Reason } from '../types'
 
 const data = {
   reasons: [

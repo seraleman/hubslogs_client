@@ -9,7 +9,7 @@
   import { watch } from 'vue'
   import useForm from '../composable/useForm'
   import { useReasonStore } from '../store/useReasonStore'
-  import { Reason as reasonInterface } from '../interfaces'
+  import { Reason as reasonInterface } from '../types'
 
   const emit = defineEmits(['closeReasonForm'])
   const props = defineProps({
