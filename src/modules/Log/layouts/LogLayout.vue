@@ -9,6 +9,18 @@
 
 <template>
   <q-layout>
+    <div class="row justify-left">
+      <q-chip
+        class="q-ma-md"
+        color="teal-1"
+        icon="las la-cogs"
+        size="xl"
+        text-color="teal-7"
+      >
+        Registros
+      </q-chip>
+    </div>
+    <q-separator spaced inset />
     <q-page-container>
       <router-view></router-view>
     </q-page-container>

@@ -1,32 +1,42 @@
 <script lang="ts">
-import { defineComponent } from 'vue'
-export default defineComponent({
-  name: 'ReasonsPage',
-})
+  import { defineComponent } from 'vue'
+  export default defineComponent({
+    name: 'ReasonsPage',
+  })
 </script>
 
 <script lang="ts" setup>
-import { onMounted, ref } from 'vue'
-import { useReasonStore } from '../store/useReasonStore'
+  import { onMounted, ref } from 'vue'
+  import { useQuasar } from 'quasar'
 
-import ReasonList from '../components/ReasonList.vue'
-import ReasonForm from '../components/ReasonForm.vue'
+  import { useReasonStore } from '../store/useReasonStore'
 
-const reasonStore = useReasonStore()
+  import ReasonList from '../components/ReasonList.vue'
+  import ReasonForm from '../components/ReasonForm.vue'
 
-onMounted(() => {
-  reasonStore.loadReasons()
-})
+  const $q = useQuasar()
 
-const openReasonForm = ref(false)
+  const reasonStore = useReasonStore()
 
-const toggleIsReasonFormOpen = () => {
-  openReasonForm.value = !openReasonForm.value
-}
+  onMounted(async () => {
+    $q.loading.show({
+      message: 'Esta arquitectura es la correcta',
+      boxClass: 'bg-grey-2 text-grey-9',
+      spinnerColor: 'secondary',
+    })
+    await reasonStore.loadReasons()
+    $q.loading.hide()
+  })
 
-const onNew = () => {
-  toggleIsReasonFormOpen()
-}
+  const openReasonForm = ref(false)
+
+  const toggleIsReasonFormOpen = () => {
+    openReasonForm.value = !openReasonForm.value
+  }
+
+  const onNew = () => {
+    toggleIsReasonFormOpen()
+  }
 </script>
 
 <template>
@@ -42,8 +52,6 @@ const onNew = () => {
       />
 
       <q-space />
-
-      <!-- <q-input type="buscar" label="Label" /> -->
     </div>
     <reason-list
       :reasons="reasonStore.reasons"

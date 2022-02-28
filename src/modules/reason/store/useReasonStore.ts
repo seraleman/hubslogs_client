@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { ReasonStore, Reason } from '../interfaces'
+import { ReasonStore, Reason } from '../types'
 import backendEmulator from './backendEmulator'
 
 export const useReasonStore = defineStore('reason', {

@@ -10,7 +10,7 @@
   import { useReasonStore } from '../store/useReasonStore'
   import useGeneral from '../composable/useGeneral'
 
-  import { Reason as reasonInterface } from '../interfaces'
+  import { Reason as reasonInterface } from '../types'
 
   import Confirmation from './Confirmation.vue'
   import ReasonForm from './ReasonForm.vue'

@@ -1,17 +1,17 @@
 <script lang="ts">
-import { defineComponent } from 'vue'
-export default defineComponent({
-  name: 'MainLayout',
-})
+  import { defineComponent } from 'vue'
+  export default defineComponent({
+    name: 'MainLayout',
+  })
 </script>
 
 <script lang="ts" setup>
-import EssentialLink from '../components/EssentialLink.vue'
-import { linkList } from '../helpers/link-list'
+  import EssentialLink from '../components/EssentialLink.vue'
+  import { linkList } from '../helpers/link-list'
 
-import { ui } from '../store/ui'
+  import { ui } from '../store/ui'
 
-const uiStore = ui()
+  const uiStore = ui()
 </script>
 
 <template>
@@ -28,7 +28,7 @@ const uiStore = ui()
         />
 
         <q-btn no-caps stretch flat aria-label="HubsLogs">
-          <q-toolbar-title> HubsLogs App </q-toolbar-title>
+          <q-toolbar-title>HUB Virtual</q-toolbar-title>
         </q-btn>
       </q-toolbar>
     </q-header>
