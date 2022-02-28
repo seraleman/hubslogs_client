@@ -7,7 +7,7 @@
 
 <script lang="ts" setup>
   import { useReasonStore } from '../store/useReasonStore'
-  import { Reason as reasonInterface } from '../interfaces'
+  import { Reason as reasonInterface } from '../types'
 
   import ReasonItem from './ReasonItem.vue'
   import Reason from './Reason.vue'
