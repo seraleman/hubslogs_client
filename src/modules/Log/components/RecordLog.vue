@@ -9,7 +9,7 @@
   import { ref } from 'vue'
   import { useQuasar } from 'quasar'
   import { User } from '../../user/types'
-  import { Reason } from '../../Reason/types'
+  import { Reason } from '../../reason/types'
   import { useLogStore } from '../store/useLogStore'
 
   const $q = useQuasar()
